@@ -364,7 +364,7 @@ def create_pdf_and_send_email(logo_path, data_frame, output_folder):
         mensagem_terraz = f"Olá, André. \n\nO Corretor <b>{row['Qual o seu nome completo?']}</b> acaba de  participar do nosso Assessment Comportamental!\n Segue o seu relatório, anexo.\n\nAtenciosamente,\n<b>Meit</b>"
         # Enviar e-mail com anexo e mensagem personalizada
         yag.send(email_corretor, 'Resultado do seu teste de perfil Big Five', mensagem_corretor, attachments=anexo)
-        yag.send(email_terraz, f"Resultado de teste de perfil Big Five de <b>{row['Qual o seu nome completo?']}</b>", mensagem_terraz, attachments=anexo)
+        yag.send(email_terraz, f"Resultado de teste de perfil Big Five de {row['Qual o seu nome completo?']}", mensagem_terraz, attachments=anexo)
     yag.close()
 
 # Chamada da função para criar os PDFs individuais e enviar por e-mail
