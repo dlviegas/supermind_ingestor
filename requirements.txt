@@ -1,0 +1,9 @@
+pandas
+unidecode
+chardet
+openpyxl
+matplotlib
+seaborn
+psycopg2-binary
+python-decouple
+scikit-learn
