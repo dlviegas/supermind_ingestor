@@ -27,7 +27,7 @@ for x in respostas.columns:
     except:
         pass
 respostas.rename(columns={'Não costumo falar muito': 'Nao_costumo_falar_muito_2'}, inplace=True)
-respostas = respostas.head(2)
+# respostas = respostas.head(2)
 
 
 # Definição das categorias para o gráfico de radar
@@ -152,25 +152,6 @@ def radar_chart(categories, values, title):
 
     return filename
 
-def enviar_email(destinatario, assunto, mensagem, anexo):
-    # Configuração do yagmail
-    yag = yagmail.SMTP('allan.ramalho@proptechven.com', 'AsR!@#2023')
-
-    # Enviar e-mail
-    yag.send(
-        to = "allansoares@id.uff.br",
-        subject = "Assessment Comportamental",
-        contents = mensagem,
-        attachments=anexo
-    )
-
-    # Encerrar conexão
-    yag.close()
-
-# # Função para adicionar o cabeçalho com a logo da empresa
-# def add_header(c, logo_path):
-#     c.drawImage(logo_path, 100, 700, width=200, height=100, mask='auto')
-## Largura e altura máximas para a logo no cabeçalho
 max_width = 500
 max_height = 150
 margem_abnt = 2.54 * 2  # 2.54 cm para cada lado, para cima e para baixo
