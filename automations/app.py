@@ -36,43 +36,43 @@ categories = ['Extroversão', 'Agradabilidade', 'Conscienciosidade', 'Neuroticis
 # Função para calcular os índices
 def model_base(df):
     df['Extroversão'] = (
-        20 + df.iloc[:, 13] - df.iloc[:, 18] +
-        df.iloc[:, 23] - df.iloc[:, 28] +
-        df.iloc[:, 33] - df.iloc[:, 38] +
-        df.iloc[:, 43] - df.iloc[:, 48] +
+        20 + df.iloc[:, 13] - df.iloc[:, 19] +
+        df.iloc[:, 24] - df.iloc[:, 29] +
+        df.iloc[:, 45] - df.iloc[:, 39] +
+        df.iloc[:, 44] - df.iloc[:, 48] +
         df.iloc[:, 53] - df.iloc[:, 58]
     )
 
     df['Agradabilidade'] = (
-        14 - df.iloc[:, 14] +
-        df.iloc[:, 19] - df.iloc[:, 24] +
-        df.iloc[:, 29] - df.iloc[:, 34] +
-        df.iloc[:, 39] - df.iloc[:, 44] +
+        14 - df.iloc[:, 15] +
+        df.iloc[:, 20] - df.iloc[:, 25] +
+        df.iloc[:, 30] - df.iloc[:, 35] +
+        df.iloc[:, 40] - df.iloc[:, 14] +
         df.iloc[:, 49] + df.iloc[:, 54] + 
         df.iloc[:, 59]
     )
 
     df['Conscienciosidade'] = (
         14 + df.iloc[:, 15] -
-        df.iloc[:, 20] + df.iloc[:, 25] - df.iloc[:, 30] +
-        df.iloc[:, 35] - df.iloc[:, 40] +
+        df.iloc[:, 21] + df.iloc[:, 26] - df.iloc[:, 31] +
+        df.iloc[:, 36] - df.iloc[:, 41] +
         df.iloc[:, 45] - df.iloc[:, 50] +
         df.iloc[:, 55] + df.iloc[:, 60]
     )
 
     df['Neuroticismo'] = (
-        38 - df.iloc[:, 16] + df.iloc[:, 21] -
-        df.iloc[:, 26] + df.iloc[:, 31] -
-        df.iloc[:, 36] - df.iloc[:, 41] -
+        38 - df.iloc[:, 17] + df.iloc[:, 22] -
+        df.iloc[:, 27] + df.iloc[:, 32] -
+        df.iloc[:, 37] - df.iloc[:, 42] -
         df.iloc[:, 46] - df.iloc[:, 51] -
         df.iloc[:, 56] - df.iloc[:, 61]
     )
 
     df['Abertura a Experiências'] = (
-        8 + df.iloc[:, 17] -
-        df.iloc[:, 22] + df.iloc[:, 27] -
-        df.iloc[:, 32] + df.iloc[:, 37] -
-        df.iloc[:, 42] + df.iloc[:, 47] +
+        8 + df.iloc[:, 18] -
+        df.iloc[:, 23] + df.iloc[:, 28] -
+        df.iloc[:, 33] + df.iloc[:, 38] -
+        df.iloc[:, 43] + df.iloc[:, 47] +
         df.iloc[:, 52] + df.iloc[:, 57] +
         df.iloc[:, 62]
     )
@@ -144,7 +144,7 @@ def radar_chart(categories, values, title):
     # Show legend with values and their classifications
     legend_labels = ["""Baixo = 0 a 10\nModerado = 11 a 29\nAlto = 30 a 40"""]
     handles = [plt.Line2D([0], [0], marker='o', color='w', markerfacecolor='blue', markersize=5)]
-    plt.legend(handles, legend_labels, loc='lower center', bbox_to_anchor=(1.1, 0.1), fontsize='small')
+    plt.legend(handles, legend_labels, loc='lower center', bbox_to_anchor=(1.1, 0.1), fontsize='small')#, bbox_to_anchor=(0.5, -0.15), ncol=3, fontsize='small')
 
     filename = "radar_chart.png"
     plt.savefig(filename, format='png', bbox_inches='tight')
@@ -152,25 +152,6 @@ def radar_chart(categories, values, title):
 
     return filename
 
-def enviar_email(destinatario, assunto, mensagem, anexo):
-    # Configuração do yagmail
-    yag = yagmail.SMTP('allan.ramalho@proptechven.com', 'AsR!@#2023')
-
-    # Enviar e-mail
-    yag.send(
-        to = "allansoares@id.uff.br",
-        subject = "Assessment Comportamental",
-        contents = mensagem,
-        attachments=anexo
-    )
-
-    # Encerrar conexão
-    yag.close()
-
-# # Função para adicionar o cabeçalho com a logo da empresa
-# def add_header(c, logo_path):
-#     c.drawImage(logo_path, 100, 700, width=200, height=100, mask='auto')
-## Largura e altura máximas para a logo no cabeçalho
 max_width = 500
 max_height = 150
 margem_abnt = 2.54 * 2  # 2.54 cm para cada lado, para cima e para baixo
@@ -179,8 +160,8 @@ def add_header(c, logo_path):
     logo_width, logo_height = ImageReader(logo_path).getSize()  # Obtém a largura e altura da imagem
 
     # Limites máximos para a largura e altura da logo
-    max_width = 200
-    max_height = 100
+    max_width = 150
+    max_height = 60
     margem_abnt = 2.54 * 2  # 2.54 cm para cada lado, para cima e para baixo
 
     # Calcula a proporção para redimensionar a imagem
@@ -196,7 +177,7 @@ def add_header(c, logo_path):
     x = (letter[0] - new_width) / 2
 
     # Posição vertical mantendo margem ABNT
-    y = letter[1] - margem_abnt - new_height
+    y = letter[1] - margem_abnt - new_height - 20
 
     # Adiciona a imagem redimensionada ao PDF centralizada horizontalmente
     c.drawImage(logo_path, x, y, width=new_width, height=new_height, mask='auto')
@@ -208,9 +189,15 @@ def add_information_table(c, respondent):
     y_offset = 700
     line_height = 20
 
-    # Título permanece na posição atual
+    title = "Assessment Comportamental"
     c.setFont("Helvetica-Bold", 14)
-    c.drawString(x_offset, y_offset, "Assessment Comportamental")
+    title_width = c.stringWidth(title, "Helvetica-Bold", 14)
+    title_position_x = (letter[0] - title_width) / 2  # Posição horizontal centralizada
+    c.drawString(title_position_x, y_offset, title)
+    
+    
+    # c.setFont("Helvetica-Bold", 14)
+    # c.drawString(x_offset, y_offset, "Assessment Comportamental")
 
     # Nome centralizado na linha, em negrito e com fonte maior
     name = respondent['Qual o seu nome completo?']
@@ -231,7 +218,7 @@ def add_information_table(c, respondent):
         'Já atua como Corretor?:',
         'Possui TTI?:',
         # 'Ano que iniciou como Corretor:',
-        'Tempo de Carreira como Corretor',
+        'Tempo de Carreira como Corretor:',
         'Em busca de Oportunidades?:'
     ]
 
@@ -266,11 +253,11 @@ def add_information_table(c, respondent):
             c.drawString(x_offset + 200, y_offset, str(value))
 
             y_offset -= line_height
-               
+            
 # Função para criar o PDF
 def create_pdf_and_send_email(logo_path, data_frame, output_folder):
     current_year = datetime.now().year  # Obtendo o ano atual
-    yag = yagmail.SMTP('allan.ramalho@proptechven.com', 'AsR!@#2023')  
+    yag = yagmail.SMTP('assessment@meit.com.br', 'AsE!@#2023')  
 
     for index, row in data_frame.iterrows():
         c = canvas.Canvas(f"{output_folder}/assessment_{row['Qual o seu nome completo?']}.pdf", pagesize=letter)
@@ -315,14 +302,15 @@ def create_pdf_and_send_email(logo_path, data_frame, output_folder):
 
         # Envio de e-mail com mensagem personalizada
         email_corretor = "allansoares@id.uff.br"#row['Endereço de e-mail']  # Substitua com o nome da coluna que contém os e-mails dos corretores
-        mensagem_corretor = f"Olá, <b>{row['Qual o seu nome completo?'].split()[0]}</b>.\n\nObrigado por participar do nosso Assessment Comportamental!\n Segue anexo o seu relatório.\n\nAtenciosamente,\n<b>Meit</b>"
+        #mensagem_corretor = f"Olá, <b>{row['Qual o seu nome completo?'].split()[0]}</b>.\n\nObrigado por participar do nosso Assessment Comportamental!\n Segue anexo o seu relatório.\n\nAtenciosamente,\n<b>Meit</b>"
+        mensagem_corretor = f"Olá, <b>{row['Qual o seu nome completo?'].split()[0]}</b>.\n\nEsperamos que esteja tudo bem!\n\nÉ com grande prazer que compartilhamos o resultado da sua avaliação de personalidade conforme o teste realizado. 🥳\n\nAnexamos um arquivo PDF contendo informações detalhadas sobre seus traços de personalidade, pontos fortes e possíveis áreas de aprimoramento. \n\nRecomendamos que reserve um momento tranquilo para revisar seu perfil com atenção.\n\nFique à vontade para compartilhar suas impressões ou dúvidas após a análise do seu perfil.\n\n\nAtenciosamente,\n<b>Equipe Meit</b>"
         anexo = f"{output_folder}/assessment_{row['Qual o seu nome completo?']}.pdf"
         
-        email_terraz = "allan.ramalho@proptechven.com"#"andrelima@terraz.com.br"
+        email_terraz = "andrelima@terraz.com.br"
         mensagem_terraz = f"Olá, André. \n\nO Corretor <b>{row['Qual o seu nome completo?']}</b> acaba de  participar do nosso Assessment Comportamental!\n Segue o seu relatório, anexo.\n\nAtenciosamente,\n<b>Meit</b>"
         # Enviar e-mail com anexo e mensagem personalizada
-        yag.send(email_corretor, 'Assessment Comportamental', mensagem_corretor, attachments=anexo)
-        yag.send(email_terraz, 'Assessment Comportamental', mensagem_terraz, attachments=anexo)
+        yag.send(email_corretor, 'Resultado do seu teste de perfil Big Five', mensagem_corretor, attachments=anexo)
+        yag.send(email_terraz, 'Resultado do seu teste de perfil Big Five', mensagem_terraz, attachments=anexo)
     yag.close()
 
 # Chamada da função para criar os PDFs individuais e enviar por e-mail
