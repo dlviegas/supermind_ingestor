@@ -270,38 +270,92 @@ def create_pdf_and_send_email(logo_path, data_frame, output_folder):
 
         c.showPage()  # Adiciona uma nova página
 
-         # Adicionando os textos explicativos na nova página
-        y_text = 700  # Posição inicial do texto
+        # Adicionando os textos explicativos na nova página
+        y_text = 720  # Posição inicial do texto
 
-        text0 = "O que esse teste significa?;"
-        text1 = "Extroversão:;A extroversão pode ser relevante para corretores de imóveis, uma vez que envolve a capacidade de se comunicar efetivamente com os clientes, colegas e outros profissionais do setor. Corretores mais extrovertidos podem ser mais propensos a estabelecer relacionamentos e redes de contatos, o que é importante para o sucesso nessa profissão."
-        text2 = "Agradabilidade:;A Agradabilidade pode ser valiosa para corretores de imóveis no que diz respeito à capacidade de construir relacionamentos duradouros com os clientes, se compassivo e compreensivo com suas necessidades e ser cooperativo na negociação de transações imobiliárias."
-        text3 = "Conscienciosidade:;A Conscienciosidade é fundamental para garantir que todos os detalhes das transações imobiliárias sejam tratados com precisão e responsabilidade. Corretores de imóveis precisam ser organizados, responsáveis e disciplinados para cumprir prazos e garantir que tudo ocorra sem problemas."
-        text4 = "Neuroticismo (ou Estabilidade Emocional):;Ter estabilidade emocional é importante para lidar com as pressões e desafios que podem surgir na indústria imobiliária. Corretores emocionalmente estáveis são mais capazes de lidar com o estresse e manter a calma em situações complexas."
-        text5 = "Abertura à Experiências:;A abertura à experiências pode ser benéfica para corretores de imóveis, pois eles podem precisar ser criativos ao apresentar imóveis de forma atraente, bem como se adaptar a novas tendências e mudanças no mercado imobiliário."
+        text0 = "Como o teste funciona?;-"
+        
+        text01 = ";-Os cinco traços da personalidade do modelo Big Five, desenvolvidos por pesquisadores como Fiske, Norman, e outros, não são julgamentos absolutos. A interpretação requer análise individual por um profissional em psicologia, não devendo ser usada isoladamente para decisões importantes."
+        text02 = ";-É essencial destacar que os resultados não são qualificados como positivos ou negativos, pois não existem padrões absolutos. A interpretação requer considerações individuais e contexto específico. Este teste não é uma avaliação definitiva e deve ser complementado por uma análise aprofundada por um profissional qualificado"
+        text03 = "Entendendo os Cinco traços;-"
+        
+        text1 = "Extroversão:;-Extroversão é importante para corretores de imóveis, já que se relaciona à habilidade de se comunicar bem com clientes, colegas e outros profissionais do ramo. Corretores mais extrovertidos costumam construir relações e redes de contatos com mais facilidade. Embora uma pontuação alta possa ser vista como positiva, estudos indicam que profissionais com pontuações mais baixas tendem a ser mais ponderados e confiáveis. Corretores bem avaliados também podem ser sensíveis ao ambiente ao seu redor e podem sentir uma necessidade maior de serem bem recebidos por todos"
+        text11 = "Dicas de desenvolvimento;-"
+        text111 = ";-Aumentar: Participar ativamente de eventos sociais; Iniciar networking regularmente; Organizar eventos imobiliários próprios."
+        text112 = ";-Reduzir: Praticar reflexão antes de falar; Focar mais em ouvir ativamente; Limitar tempo de interações intensas."
+        
+        text2 = "Agradabilidade:;-A capacidade de ser amigável e empático é muito importante para corretores de imóveis, pois ajuda a construir relacionamentos duradouros com os clientes e a compreender suas necessidades durante negociações. Em resumo, ter uma pontuação alta nisso é positivo, especialmente numa profissão que exige consultoria e inspira confiança. Por outro lado, uma pontuação mais baixa pode indicar um profissional mais cauteloso e desconfiado, o que pode dificultar situações em que é crucial gerar confiança e estar aberto a diferentes perspectivas."
+        text21 = "Dicas de desenvolvimento;-"
+        text211 = ";-Aumentar:  Demonstrar empatia com clientes; Incentivar feedback aberto e positivo; Oferecer ajuda desinteressada."
+        text212 = ";-Reduzir: Evitar julgamentos prematuros; Limitar ceticismo inicial; Controlar impulsos críticos."
+        
+        text3 = "Conscienciosidade:;-A conscienciosidade, também conhecida como o traço da realização, é essencial para garantir que todos os detalhes das transações imobiliárias sejam tratados com precisão e responsabilidade. Esse é um dos traços mais evidentes de que uma pontuação alta é positiva, pois indica que o profissional está disposto a sacrificar benefícios de curto prazo para alcançar sucesso profissional. Isso implica em um alto controle sobre suas ações, resultando em maior produtividade. No entanto, é importante notar que uma pontuação baixa pode estar relacionada a outros aspectos da personalidade, os quais devem ser avaliados por um profissional qualificado."
+        text31 = "Dicas de desenvolvimento;-"
+        text311 = ";-Aumentar:  Criar checklist para transações; Agendar revisões regulares de processos; Estabelecer metas detalhadas mensais."
+        text312 = ";-Reduzir:  Flexibilizar perfeccionismo em excesso; Delegar tarefas quando apropriado; Evitar excesso de detalhes iniciais."
+        
+        text4 = "Estabilidade Emocional (ou Neuroticismo):;-Manter a estabilidade emocional é essencial ao lidar com as pressões e desafios na indústria imobiliária. Os corretores emocionalmente estáveis lidam melhor com o estresse e mantêm a calma em situações complexas. Pontuações altas nesse aspecto podem indicar menor controle emocional, maior sensibilidade e variações de humor. Isso pode sugerir uma ansiedade excessiva na personalidade do indivíduo."
+        text41 = "Dicas de desenvolvimento;-"
+        text411 = ";-Aumentar: Procurar controlar as expectativas dos Clientes; Antecipar de Problemas de Vendas; Gerenciar Diversos Processos Simultaneamente."
+        text412 = ";-Reduzir: Praticar mindfulness para aceitação emocional; ocar em estratégias para lidar com o estresse; Encontrar atividades relaxantes após o trabalho."
+        
+        text5 = "Abertura à Experiências:;-Ter uma mente aberta para novas experiências é útil para corretores de imóveis. Eles precisam ser criativos na maneira como mostram os imóveis para atrair pessoas, e também se adaptar às mudanças no mercado imobiliário. Geralmente, ter uma pontuação alta pode ser vantajoso nessa profissão. Por outro lado, aqueles com uma mentalidade mais concreta, mesmo que tenham pontuação mais baixa nesse aspecto, tendem a se sair melhor em atividades práticas."
+        text51 = "Dicas de desenvolvimento;-"
+        text511 = ";-Aumentar:  Visitar locais culturais e criativos; Experimentar diferentes técnicas de vendas; Participar de workshops inovadores."
+        text512 = ";-Reduzir: Manter foco em abordagens tradicionais; Limitar padrões de rotina rígidos; Evitar resistência a mudanças"
+    
 
-        for text in [text0, text1, text2, text3, text4, text5]:
-            text_split = text.split(';', 1)
-            title = text_split[0].strip()
-            content = text_split[1].strip()
+        all_texts = [
+            text0, text01, text02, text03,
+            text1, text11, text111, text112,
+            text2, text21, text211, text212,
+            text3, text31, text311, text312,
+            text4, text41, text411, text412,
+            text5, text51, text511, text512
+        ]
 
-            c.setFont("Helvetica-Bold", 10)
-            c.drawString(100, y_text, title)  # Título no início do parágrafo
-            y_text -= 15  # Espaçamento entre os títulos e o conteúdo
+        # Define o número de textos por página
+        texts_per_page = 13
 
-            wrapped_text = textwrap.fill(content, width=80)
-            lines = wrapped_text.split('\n')
-            for line in lines:
-                c.setFont("Helvetica", 10)
-                c.drawString(120, y_text, line.strip())
-                y_text -= 15  # Espaçamento entre as linhas
+        # Divide os textos em páginas
+        pages = [all_texts[i:i + texts_per_page] for i in range(0, len(all_texts), texts_per_page)]
 
-            y_text -= 15  # Espaçamento entre os parágrafos
+        for page_texts in pages:
+            for text in page_texts:
+                text_split = text.split(';-', 1)
+                title = text_split[0].strip()
+                content = text_split[1].strip()
+
+                c.setFont("Helvetica-Bold", 10)
+                c.drawString(70, y_text, title)
+
+                if text in [text0, text1, text2, text3, text4, text5]:
+                    y_text -= 15
+                elif text in [text11, text111, text21, text211, text31, text311, text41, text411, text51, text511]:
+                    y_text -= 10
+                else:
+                    y_text -= 8
+
+                wrapped_text = textwrap.fill(content, width=110)
+                lines = wrapped_text.split('\n')
+                for line in lines:
+                    c.setFont("Helvetica", 9)
+                    c.drawString(80, y_text, line.strip())
+                    y_text -= 12
+
+                if text in [text0, text1, text2, text3, text4, text5]:
+                    y_text -= 10
+                else:
+                    y_text -= 5
+
+                if y_text < 40:  # Nova página se não houver espaço suficiente
+                    c.showPage()
+                    y_text = 720
 
         c.save()
-
+        
         # Envio de e-mail com mensagem personalizada
-        email_corretor = "allansoares@id.uff.br"#row['Endereço de e-mail']  # Substitua com o nome da coluna que contém os e-mails dos corretores
+        email_corretor = "allansoares@id.uff.br"#row['Endereço de e-mail']  
         #mensagem_corretor = f"Olá, <b>{row['Qual o seu nome completo?'].split()[0]}</b>.\n\nObrigado por participar do nosso Assessment Comportamental!\n Segue anexo o seu relatório.\n\nAtenciosamente,\n<b>Meit</b>"
         mensagem_corretor = f"Olá, <b>{row['Qual o seu nome completo?'].split()[0]}</b>.\n\nEsperamos que esteja tudo bem!\n\nÉ com grande prazer que compartilhamos o resultado da sua avaliação de personalidade conforme o teste realizado. 🥳\n\nAnexamos um arquivo PDF contendo informações detalhadas sobre seus traços de personalidade, pontos fortes e possíveis áreas de aprimoramento. \n\nRecomendamos que reserve um momento tranquilo para revisar seu perfil com atenção.\n\nFique à vontade para compartilhar suas impressões ou dúvidas após a análise do seu perfil.\n\n\nAtenciosamente,\n<b>Equipe Meit</b>"
         anexo = f"{output_folder}/assessment_{row['Qual o seu nome completo?']}.pdf"
@@ -310,7 +364,7 @@ def create_pdf_and_send_email(logo_path, data_frame, output_folder):
         mensagem_terraz = f"Olá, André. \n\nO Corretor <b>{row['Qual o seu nome completo?']}</b> acaba de  participar do nosso Assessment Comportamental!\n Segue o seu relatório, anexo.\n\nAtenciosamente,\n<b>Meit</b>"
         # Enviar e-mail com anexo e mensagem personalizada
         yag.send(email_corretor, 'Resultado do seu teste de perfil Big Five', mensagem_corretor, attachments=anexo)
-        yag.send(email_terraz, 'Resultado do seu teste de perfil Big Five', mensagem_terraz, attachments=anexo)
+        yag.send(email_terraz, f"Resultado de teste de perfil Big Five de <b>{row['Qual o seu nome completo?']}</b>", mensagem_terraz, attachments=anexo)
     yag.close()
 
 # Chamada da função para criar os PDFs individuais e enviar por e-mail
